@@ -12,18 +12,12 @@ The model integrates:
 - A **ResNet-based CNN** for multi-band image feature extraction
 - An **MLP encoder** for catalog-based photometric features
 - A **fusion module** to combine multimodal representations
+![Model](assets/Model.png)
 
-Paper: *(to be updated)*
+Paper: *(Accepted by ApJS. To be updated)*
 
 > **Abstract**  
-> Galaxy physical properties—such as star formation rate (SFR), stellar mass, and gas-phase metallicity—are essential for population studies and galaxy evolution analyses. Deriving these quantities for billions of galaxies in modern imaging surveys remains challenging due to limited spectroscopic coverage and the high computational cost of traditional SED fitting.  
->  
-> This work introduces a multimodal deep learning model that combines optical imaging and photometric catalog features to estimate SFR, stellar mass, and oxygen abundance for low-redshift galaxies. The model leverages complementary information from morphology, surface brightness, and broadband colors.  
->  
-> Trained on MPA-JHU DR8 measurements, the model enables efficient large-scale inference. Applied to DESI LS DR10, it produces a value-added catalog of ~547 million galaxies ($z \leq 0.5$).  
->  
-> While not intended for precision measurements of individual objects, the model successfully recovers key astrophysical trends, making it suitable for large-scale statistical studies.
-
+> Galaxy physical properties—such as star formation rate (SFR), stellar mass, and gas-phase metallicity—are essential for population studies and galaxy evolution analyses. Deriving these quantities for billions of galaxies in modern imaging surveys remains challenging due to limited spectroscopic coverage and the high computational cost of traditional SED fitting.  This work introduces a multimodal deep learning model that combines optical imaging and photometric catalog features to estimate SFR, stellar mass, and oxygen abundance for low-redshift galaxies. The model leverages complementary information from morphology, surface brightness, and broadband colors.  Trained on MPA-JHU DR8 measurements, the model enables efficient large-scale inference. Applied to DESI LS DR10, it produces a value-added catalog of ~547 million galaxies ($z \leq 0.5$). While not intended for precision measurements of individual objects, the model successfully recovers key astrophysical trends, making it suitable for large-scale statistical studies.
 ---
 
 ## Key Features
@@ -38,6 +32,8 @@ Paper: *(to be updated)*
 ## Project Structure
 ```
 multimodal-desilsdr10-properties-vac
+├── assets/
+│ └── Model.png
 ├── config/
 │ └── config.yaml # experiment configuration
 ├── data/
