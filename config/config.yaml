@@ -1,0 +1,103 @@
+# ============================================================
+# Configuration file for multimodal galaxy property estimation
+# This file controls experiment setup, data paths, feature selection,
+# training hyperparameters, and model architecture.
+
+# Last updated: 2026-04-20
+# ============================================================
+
+Experiment:
+  Project_name: 'GalaxyProperties'   # Project identifier (used for logging / organization)
+  Description: 'SFR Test set'        # Short description of current experiment
+  Run_name: &Run_name 'Test_SFR'     # Unique run name (used for output/checkpoints)
+
+Data:
+  # ----------- Input data paths -----------
+  IMG_PATH: 'data/testset/OH/OH_images_color.npy'   # Preprocessed multi-band images
+  LABEL_PATH: 'data/testset/OH/OH_labels.npy'       # Target labels (e.g., SFR, LGM, OH)
+  CATALOG_PATH: 'data/testset/OH/OH_df_features.csv' # Tabular photometric features
+
+  # ----------- Dataset split -----------
+  VALIDATION_SIZE: 0.125   # Fraction of data used for validation
+  TEST_SIZE: 0.2           # Fraction of data used for testing
+
+  DATA_AUGMENTATION: True  # Whether to apply data augmentation to images
+
+  Property_NAME: OH       # Target property to predict (SFR / LGM / OH)
+
+  # ----------- Feature selection for catalog input -----------
+  # Each task can define its own feature set
+  # type:
+  #   - "list": directly specify feature names
+  #   - "file": read feature names from a text file (one per line)
+  CatalogColumns:
+    SFR:
+      type: list
+      value: ['MAG_G', 'MAG_R', 'MAG_W3', 'APMAG_G7', 'APMAG_G8', 'APMAG_W31',
+              'G-R', 'W1-W2', 'G2-W32', 'G7-R7', 'G7-R8', 'G7-Z7', 'G8-R8',
+              'R4-W31', 'R5-W31', 'R5-W32', 'Z3-W22', 'Z3-W32', 'Z4-W22',
+              'Z5-W32', 'Z6-W32', 'Z7-W32', 'W12-W22', 'W12-W23', 'W13-W22',
+              'W15-W33', 'sfdmap', 'Z']
+
+    LGM:
+      type: list
+      value: ['G-R','R-Z','MAG_G','R-W1','MAG_R','R-I','W12-W22','R1-R2','I-Z',
+              'Z-W1','G1-G2','MAG_Z','Z2-W12','Z5-W15','G-G1','R-W2','G-I',
+              'G5-R5','W12-W13','G-Z','R2-R3','Z2-Z3','R1-I1','MAG_W1',
+              'G1-R1','R3-R4','Z4-W14','I-I1','G4-R4','G-W2','Z1-Z2','G5-G6',
+              'Z5-Z6','I5-Z5','Z3-Z4','G-W1','W1-W2','G6-R6','G4-G5','R-R1',
+              'G6-G7','I-W1','Z4-Z5','G7-R7','MAG_I','W13-W14','R5-I5',
+              'Z3-W13','sfdmap','Z']
+
+    OH:
+      type: file
+      value: 'data/testset/OH/OH_features.txt'   # External feature list file
+
+
+Train:
+  BATCH_SIZE: 32        # Training batch size
+  EPOCH: 40             # Number of training epochs
+  LEARNING_RATE: 0.001  # Initial learning rate
+
+
+Model:
+  # ----------- Model architecture configuration -----------
+  MODEL_NAME: *Run_name             # Model identifier (usually tied to run name)
+
+  ImageEncoder_NAME: "ResNet50"     # CNN backbone for image feature extraction
+  CatalogEncoder_NAME: "MLP"        # Encoder for tabular features
+  FusionModel_NAME: "concat_model"  # Multimodal fusion strategy
+  FusionModel_Weights: "None"       # Pretrained weights (if any)
+
+  EstimateModel_NAME: "FCN"         # Final prediction head
+  EstimateModel_Weights: "None"
+
+  # ----------- Task-specific hyperparameters -----------
+  # Different target properties may require different model capacities
+  HParams:
+    SFR:
+      cnn_fc_layer_size: 2048       # Fully-connected layer size after CNN
+      mlp_fc_layers: 3              # Number of MLP layers
+      mlp_fc_layer_size: 256        # Hidden size of MLP
+      mlp_dropout: 0.1              # Dropout rate
+      mlp_activation: "LeakyReLU"   # Activation function
+      mlp_use_bn: False             # Whether to use BatchNorm
+      Nbins: 1                      # Output bins (1 for regression)
+
+    LGM:
+      cnn_fc_layer_size: 1024
+      mlp_fc_layers: 4
+      mlp_fc_layer_size: 256
+      mlp_dropout: 0.1
+      mlp_activation: "GELU"
+      mlp_use_bn: False
+      Nbins: 1
+
+    OH:
+      cnn_fc_layer_size: 1024
+      mlp_fc_layers: 3
+      mlp_fc_layer_size: 2048
+      mlp_dropout: 0.1
+      mlp_activation: "ReLU"
+      mlp_use_bn: True
+      Nbins: 1
