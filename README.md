@@ -1,6 +1,7 @@
 # A Value-Added Physical Properties Catalog for Low-redshift Galaxies from DESI Legacy Imaging Surveys DR10
 
 [![Dataset DOI](https://img.shields.io/badge/Dataset%20DOI-10.12149%2F101777-blue)](https://doi.org/10.12149/101777)
+[![Catalog Query Service](https://img.shields.io/badge/NADC-Query%20Service-orange)](https://nadc.china-vo.org/ai/query/legacy_galaxy_physical_parameters/f)
 
 ## Overview
 This repository provides the official implementation for a multimodal deep learning framework to estimate galaxy physical properties — including star formation rate (SFR), stellar mass (LGM), and gas-phase metallicity (OH) — using imaging and photometric data from DESI Legacy Imaging Surveys DR10.
@@ -101,7 +102,7 @@ All experiment settings are controlled via: `config/config.yaml`
 ### Installation
 
 ```bash
-git clone <repo_url>
+git clone https://github.com/RuiNov1st/multimodal-desilsdr10-properties-vac
 cd multimodal-desilsdr10-properties-vac
 
 conda create -n lsvac python=3.10
@@ -165,6 +166,9 @@ If you use this work, please cite:
   The complete catalog released in this work is publicly available at:  
   https://doi.org/10.12149/101777 
   DOI: 10.12149/101777  
+  
+  An interactive, user-friendly web service for querying and visualizing the catalog is also provided at  https://nadc.china-vo.org/ai/query/legacy_galaxy_physical_parameters/f.  
+  The catalog can be accessed either through the web interface or programmatically via an API (documentation available at https://nadc.china-vo.org/ai/query/api/docs).
 
 - **Dataset Citation**
 ```bibtex
