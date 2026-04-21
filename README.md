@@ -1,9 +1,6 @@
 # A Value-Added Physical Properties Catalog for Low-redshift Galaxies from DESI Legacy Imaging Surveys DR10
-```markdown
-[![Dataset DOI](https://img.shields.io/badge/Dataset-DOI-blue)](https://doi.org/10.12149/101777)
-```
 
-
+[![Dataset DOI](https://img.shields.io/badge/Dataset%20DOI-10.12149%2F101777-blue)](https://doi.org/10.12149/101777)
 
 ## Overview
 This repository provides the official implementation for a multimodal deep learning framework to estimate galaxy physical properties — including star formation rate (SFR), stellar mass (LGM), and gas-phase metallicity (OH) — using imaging and photometric data from DESI Legacy Imaging Surveys DR10.
@@ -184,7 +181,7 @@ If you use this work, please cite:
 
 ---
 
-## ToDO
+## ToDo
 - [ ] Add paper link (arXiv)
 - [ ] Release pretrained model weights and usage interface
 - [ ] Provide inference pipeline for large-scale prediction (Wei et al. 2026, in preparation)
