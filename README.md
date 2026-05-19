@@ -12,7 +12,7 @@ The model integrates:
 - A **fusion module** to combine multimodal representations
 ![Model](assets/Model.png)
 
-Paper: *(Accepted by ApJS. To be updated)*
+Paper: Published in ApJS
 
 > **Abstract**  
 > Galaxy physical properties—such as star formation rate (SFR), stellar mass, and gas-phase metallicity—are essential for population studies and galaxy evolution analyses. Deriving these quantities for billions of galaxies in modern imaging surveys remains challenging due to limited spectroscopic coverage and the high computational cost of traditional SED fitting.  This work introduces a multimodal deep learning model that combines optical imaging and photometric catalog features to estimate SFR, stellar mass, and oxygen abundance for low-redshift galaxies. The model leverages complementary information from morphology, surface brightness, and broadband colors.  Trained on MPA-JHU DR8 measurements, the model enables efficient large-scale inference. Applied to DESI LS DR10, it produces a value-added catalog of ~547 million galaxies ($z \leq 0.5$). While not intended for precision measurements of individual objects, the model successfully recovers key astrophysical trends, making it suitable for large-scale statistical studies.
@@ -154,11 +154,21 @@ Saved automatically during training (best validation model) in `weights/{Run_nam
 ## Citation
 
 If you use this work, please cite:
-
-@article{xxx2026,
-  title={...}
+```bibtex
+@article{Wei_2026,
+doi = {10.3847/1538-4365/ae6242},
+url = {https://doi.org/10.3847/1538-4365/ae6242},
+year = {2026},
+month = {may},
+publisher = {The American Astronomical Society},
+volume = {284},
+number = {2},
+pages = {45},
+author = {Wei, Shirui and Li, Changhua and Zhang, Yanxia and Cui, Chenzhou and Shi, Jinghang and Shao, Wujun and Kang, Zihan and Zhao, Yongheng and Huang, Maoyuan},
+title = {A Value-added Physical Properties Catalog for Low-redshift Galaxies from DESI Legacy Imaging Surveys DR10},
+journal = {The Astrophysical Journal Supplement Series}
 }
-
+```
 ---
 ## Other Resources
 
@@ -186,7 +196,7 @@ If you use this work, please cite:
 ---
 
 ## ToDo
-- [ ] Add paper link (arXiv)
+- [x] Add paper link (arXiv)
 - [ ] Release pretrained model weights and usage interface
 - [ ] Provide inference pipeline for large-scale prediction (Wei et al. 2026, in preparation)
 
